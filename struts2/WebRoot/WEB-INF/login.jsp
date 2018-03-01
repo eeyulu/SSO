@@ -8,7 +8,7 @@
 	</head>
 	<body>
 	${msg}
-		<form action="http://localhost:8080/struts2/sso/login" method="post">
+		<form action="http://check.x.com:8080/struts2/sso/login" method="post">
 			<p>
 				账号：
 				<input type="text" name="userName" value="${userName}" />

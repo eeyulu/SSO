@@ -36,19 +36,20 @@
 	</package>
 	
 	<package namespace="/sso" name="demo3" extends="struts-default">
-		<action name="login" class="org.tarena.action.LoginAction" method="doLogin">
+		<action name="login" class="check.x.com.LoginAction" method="doLogin">
 			<result name="success" type="redirect">
-<!-- 				/WEB-INF/ok.jsp -->
 				${gotoUrl}
 			</result>
 			<result name="error" >
 				/WEB-INF/login.jsp
 			</result>
 		</action>
+		<action name="checkCookie" class="check.x.com.LoginAction" method="checkCookie">
+		</action>
 	</package>
 	
 	<package namespace="/demo1" name="demo4" extends="struts-default">
-		<action name="main" class="org.tarena.demo1.Demo1Action" method="main">
+		<action name="main" class="demo1.x.com.Demo1Action" method="main">
 			<result name="success" >
 				/WEB-INF/success1.jsp
 			</result>
@@ -58,7 +59,7 @@
 		</action>
 	</package>
 	<package namespace="/demo2" name="demo5" extends="struts-default">
-		<action name="main" class="org.tarena.demo2.Demo2Action" method="main">
+		<action name="main" class="demo2.x.com.Demo2Action" method="main">
 			<result name="success" >
 				/WEB-INF/success2.jsp
 			</result>
