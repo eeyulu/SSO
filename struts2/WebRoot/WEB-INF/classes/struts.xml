@@ -4,69 +4,70 @@
     "http://struts.apache.org/dtds/struts-2.1.7.dtd">
 
 <struts>
-	<!-- 自定义Action对应的请求类型，覆盖底层默认的*.action和没有扩展名的请求设置 ?????????????-->
-	<constant name="struts.action.extension" value=".do,,"/>
-<!-- name包名(不要重复即可) extends继承框架底层包，该包有result组件等
-	namespace用于限制action元素的name请求名(如/../hello) 可不写默认为/-->
-	<package name="demo1" extends="struts-default" namespace="/"> 
-	<!-- name:请求名; class:Action组件类名  method:指定Action的业务方法名，默认execute -->
-		<action name="hello" class="org.tarena.action.HelloAction" method="execute">
-			<!-- name标识符，与Action返回结果对应
-			type指定result类型，默认dispatcher -->
-			<result name="success" type="dispatcher" >
+	<!-- 自定义Action对应的请求类型，覆盖底层默认的*.action和没有扩展名的请求设置 ????????????? -->
+	<constant name="struts.action.extension" value=".do,," />
+	<!-- name包名(不要重复即可) extends继承框架底层包，该包有result组件等 namespace用于限制action元素的name请求名(如/../hello) 
+		可不写默认为/ -->
+	<package name="demo1" extends="struts-default" namespace="/">
+		<!-- name:请求名; class:Action组件类名 method:指定Action的业务方法名，默认execute -->
+		<action name="hello" class="org.tarena.action.HelloAction"
+			method="execute">
+			<!-- name标识符，与Action返回结果对应 type指定result类型，默认dispatcher -->
+			<result name="success" type="dispatcher">
 				/hello.jsp
 			</result>
 		</action>
 	</package>
 
-	<package name="demo2" extends="struts-default">
-		<!-- 默认调用底层Action返回success -->
-		<action name="tologin" class="org.tarena.action.HelloAction" method="toLogin">
-			<!-- name默认success，type默认dispatcher -->
-			<result name="login" >
+
+	<package namespace="/sso" name="demo3" extends="struts-default">
+		<action name="doLogin" class="www.x.com.LoginAction" method="doLogin">
+		</action>
+		<action name="checkCookie" class="www.x.com.LoginAction"
+			method="checkCookie">
+		</action>
+	</package>
+
+	<package namespace="/demo1" name="demo4" extends="struts-default">
+		<action name="doLogin" class="www.a.com.Demo1Action" method="doLogin">
+			<result name="success">
+				/WEB-INF/success1.jsp
+			</result>
+			<result name="login">
 				/WEB-INF/login.jsp
 			</result>
 		</action>
 		
-		<action name="scope" class="org.tarena.action.ScopeAction" >
-			<result name="success" >
-				/WEB-INF/scope.jsp
-			</result>
-		</action>
-	</package>
-	
-	<package namespace="/sso" name="demo3" extends="struts-default">
-		<action name="login" class="check.x.com.LoginAction" method="doLogin">
-			<result name="success" type="redirect">
-				${gotoUrl}
-			</result>
-			<result name="error" >
-				/WEB-INF/login.jsp
-			</result>
-		</action>
-		<action name="checkCookie" class="check.x.com.LoginAction" method="checkCookie">
-		</action>
-	</package>
-	
-	<package namespace="/demo1" name="demo4" extends="struts-default">
-		<action name="main" class="demo1.x.com.Demo1Action" method="main">
-			<result name="success" >
+		<action name="main" class="www.a.com.Demo1Action" method="main">
+			<result name="success">
 				/WEB-INF/success1.jsp
 			</result>
-			<result name="login" >
+			<result name="login">
 				/WEB-INF/login.jsp
 			</result>
+		</action>
+		<action name="addCookie" class="www.a.com.Demo1Action" method="addCookie">
 		</action>
 	</package>
 	<package namespace="/demo2" name="demo5" extends="struts-default">
-		<action name="main" class="demo2.x.com.Demo2Action" method="main">
-			<result name="success" >
+		<action name="doLogin" class="www.b.com.Demo2Action" method="doLogin">
+			<result name="success">
 				/WEB-INF/success2.jsp
 			</result>
-			<result name="login" >
+			<result name="login">
 				/WEB-INF/login.jsp
 			</result>
 		</action>
+		<action name="main" class="www.b.com.Demo2Action" method="main">
+			<result name="success">
+				/WEB-INF/success2.jsp
+			</result>
+			<result name="login">
+				/WEB-INF/login.jsp
+			</result>
+		</action>
+		<action name="addCookie" class="www.b.com.Demo2Action" method="addCookie">
+		</action>
 	</package>
-	
+
 </struts>

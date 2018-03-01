@@ -8,10 +8,10 @@
 	</head>
 	<body>
 	${msg}
-		<form action="http://check.x.com:8080/struts2/sso/login" method="post">
+		<form action="${path}/doLogin" method="post">
 			<p>
 				账号：
-				<input type="text" name="userName" value="${userName}" />
+				<input type="text" name="username" value="${userName}" />
 			</p>
 			<p>
 				密码：
